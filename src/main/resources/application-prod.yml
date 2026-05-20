@@ -1,11 +1,37 @@
 spring:
+
+  # parameter store 연결 부분
+  config:
+    import: aws-parameterstore:/member/prod/
+
+  # AWS 리전 설정 부분
+  cloud:
+    aws:
+      region:
+        static: ap-northeast-2
+      parameterstore:
+        region: ap-northeast-2
+
   datasource:
-    url: jdbc:mysql://${DB_HOST}:${DB_PORT:3306}/${DB_NAME}?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
     driver-class-name: com.mysql.cj.jdbc.Driver
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
 
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: false
+
+# Actuator 엔드포인트 노출 부분
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+  # info에 환경값 출력 허용
+  info:
+    env:
+      enabled: true
+
+# 실제로 /actuator/info 에 보여줄 값
+info:
+  team-name: ${team-name}
