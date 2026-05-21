@@ -16,4 +16,11 @@
 
 ### RDS 보안 그룹
 
-![](docs/images/rds.png)
+![RDS 보안 그룹](docs/images/rds.png)
+
+### 프로필 이미지 Presigned URL 테스트
+
+- Presigned URL 유효기간: 7일
+- 만료 시간: 2026-05-28T18:10:00
+
+![프로필 이미지 접근 성공](docs/images/profile-image-success.png)
