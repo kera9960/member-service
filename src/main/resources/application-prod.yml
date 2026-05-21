@@ -7,6 +7,8 @@ spring:
   # AWS 리전 설정 부분
   cloud:
     aws:
+      s3:
+        bucket: member-s3-profile-image
       region:
         static: ap-northeast-2
       parameterstore:

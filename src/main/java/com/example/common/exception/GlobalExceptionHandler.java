@@ -24,7 +24,7 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
     }
 
-    @ExceptionHandler(IllegalArgumentException.class)
+    @ExceptionHandler(MemberNotFoundException.class)
     public ResponseEntity<ErrorResponse> handleMemberNotFoundException(MemberNotFoundException e) {
         log.error("멤버 조회 실패", e);
 
@@ -40,5 +40,14 @@ public class GlobalExceptionHandler {
         ErrorResponse errorResponse = new ErrorResponse(500, "서버 내부 오류가 발생했습니다.");
 
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
+    }
+
+    @ExceptionHandler(InvalidImageFileException.class)
+    public ResponseEntity<ErrorResponse> handleBadRequestException(InvalidImageFileException e) {
+        log.error("프로필 이미지 업로드 요청 실패", e);
+
+        ErrorResponse errorResponse = new ErrorResponse(400, e.getMessage());
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
     }
 }
