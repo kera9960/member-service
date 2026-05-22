@@ -33,7 +33,7 @@ jobs:
 
       - name: Build and Push Docker image
         run: |
-          docker build --platform linux/amd64 -t ${{ secrets.DOCKERHUB_USERNAME }}/member-app:latest .
+          docker build --platform linux/arm64 -t ${{ secrets.DOCKERHUB_USERNAME }}/member-app:latest .
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/member-app:latest
 
       - name: Deploy to EC2
